@@ -11,7 +11,7 @@ function HomePage() {
         <>
             <Header/>
             <Search/>
-            <main className="w-2/3 container mx-auto grid grid-cols-3  gap-16  ">
+            <main className="w-2/3 container mx-auto grid lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  gap-16  mb-10">
                 <Card
                     name="Blade Nanner"
                     release_date="29/02/1992"
