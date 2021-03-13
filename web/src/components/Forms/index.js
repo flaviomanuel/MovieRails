@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from './components/Input';
+import Button from '../../components/Button';
 import ReactStars from 'react-rating-stars-component'
 
 function Forms(){
@@ -8,7 +9,7 @@ function Forms(){
         console.log(newRating);
       }; 
     return(
-        <form className="my-10 mx-16">
+        <form className="my-auto mx-16">
             <Input
             type="text"
             name="name"
@@ -46,7 +47,11 @@ function Forms(){
             />,
             </div>
 
-  
+        <Button
+        text="Cadastrar Filme"
+        link="/"
+        isSubmitButton={true}
+        />
         </form>
     )
 }
