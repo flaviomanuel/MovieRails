@@ -5,7 +5,10 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'leftBackgroundRedRails': "url('/src/assets/images/left-background.png')",
-       })
+       }),
+       outline: {
+         outlineInput: 'outline-style: none'
+       }
     },
     fontSize: {
       modifyLg: ['1.125rem',"1rem"],
