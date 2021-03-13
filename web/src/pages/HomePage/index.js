@@ -9,7 +9,7 @@ import Card from '../../components/Card';
 function HomePage() {
     return (
         <>
-            <Header/>
+            <Header link="/create-movie"/>
             <Search/>
             <main className="w-2/3 container mx-auto grid lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  gap-16  mb-10">
                 <Card
