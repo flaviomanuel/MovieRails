@@ -3,6 +3,7 @@ import React from 'react';
 function Input({type, name, placeholder, required }) {
 
     const isTypeTextare = type === 'textarea';
+    const isTypeText = type === 'text';
     return (
         <>
         { isTypeTextare ? (
@@ -11,7 +12,7 @@ function Input({type, name, placeholder, required }) {
             name={name}
             placeholder={placeholder}
             required={required}
-            className="w-full rounded-md bg-grayBackground mb-8 resize-none h-36 "
+            className="w-full rounded-md bg-grayBackground mb-8 resize-none h-36"
             />
 
         ) : (
@@ -21,7 +22,8 @@ function Input({type, name, placeholder, required }) {
             name={name}
             placeholder={placeholder}
             required={required}
-            className="w-full rounded-md bg-grayBackground mb-8"
+            className={ `rounded-md bg-grayBackground 
+            ${isTypeText ? ("w-full") : ( " w-2/3 p-4" ) } mb-8`}
             />
             
         ) }

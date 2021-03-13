@@ -1,7 +1,12 @@
 import React from 'react';
 import Input from './components/Input';
+import ReactStars from 'react-rating-stars-component'
 
 function Forms(){
+
+    const ratingChanged = (newRating) => {
+        console.log(newRating);
+      }; 
     return(
         <form className="my-10 mx-16">
             <Input
@@ -24,6 +29,23 @@ function Forms(){
             required="true"
             />
             
+            <div className="flex items-center justify-between">
+                <Input
+                type="date"
+                name="release_date"
+                placeholder="29/29/1992"
+                required="true"
+                />
+                <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                size={50}
+                value={5}
+                activeColor="#ffd700"
+                classNames="mb-8 "
+            />,
+            </div>
+
   
         </form>
     )
