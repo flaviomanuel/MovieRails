@@ -11,7 +11,7 @@ function Input({type, name, placeholder, required }) {
             name={name}
             placeholder={placeholder}
             required={required}
-            className="w-full rounded-md bg-grayBackground mb-8 resize-none "
+            className="w-full rounded-md bg-grayBackground mb-8 resize-none h-36 "
             />
 
         ) : (
