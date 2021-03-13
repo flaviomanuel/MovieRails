@@ -9,7 +9,8 @@ module.exports = {
     },
     fontSize: {
       modifyLg: ['1.125rem',"1rem"],
-      titleLeftMain:["3rem","3.8rem"]
+      titleLeftMain:["3rem","3.8rem"],
+      titleForm:["1.8rem","2rem"],
     },
     colors: {
       redRails: '#CC0000',
@@ -23,5 +24,7 @@ module.exports = {
   variants: {
 
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
