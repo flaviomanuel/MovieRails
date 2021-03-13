@@ -3,7 +3,7 @@ import Input from './components/Input';
 import Button from '../../components/Button';
 import ReactStars from 'react-rating-stars-component'
 
-function Forms(){
+function Forms({buttonText}){
 
     const ratingChanged = (newRating) => {
         console.log(newRating);
@@ -48,7 +48,7 @@ function Forms(){
             </div>
 
         <Button
-        text="Cadastrar Filme"
+        text={buttonText}
         link="/"
         isSubmitButton={true}
         />

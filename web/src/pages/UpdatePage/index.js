@@ -3,15 +3,16 @@ import React from 'react';
 import LeftArticle from '../../components/LeftArticle';
 import RightArticle from '../../components/RightArticle';
 
-function CreatePage(){
+function UpdatePage() {
     return(
         <main className="flex">
-        <LeftArticle title="Cadastre um filme"/>
+        <LeftArticle title="Atualizar um filme"/>
         <RightArticle 
-        title="Cadastre informações sobre o filme"
-        buttonText="Cadastrar Filme"/>
+        title="Atualizar informações sobre o filme"
+        buttonText="Atualizar Filme"
+        />
          </main>
     )
 }
 
-export default CreatePage;
+export default UpdatePage;
