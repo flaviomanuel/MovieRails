@@ -19,6 +19,12 @@ function HomePage() {
         } catch(error) {
             if(error.request.status === 404) {
                 alert("Filme não encontrado")
+            } else if (error.request) {
+                console.log('erro de requisição: ',error.request);
+                
+            } else {
+                // Something happened in setting up the request and triggered an Error
+                console.log('Error', error.message);
             }
         }
     }

@@ -3,12 +3,13 @@ import Header from '../../components/Header';
 import {BiCameraMovie} from 'react-icons/bi'
 import {AiFillStar} from 'react-icons/ai'
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import api from '../../services/api';
 
 function SynopsisPage() {
 
     const {id} = useParams()
+    const history = useHistory()
     
     const [movies, setMovies] = useState([])
 
@@ -20,13 +21,23 @@ function SynopsisPage() {
         })
     },[id])
 
-
         let i =0; 
         for (i = 0; i < movies.score; i++) {
             starArray.push(i+1)
         }
     
-    console.log('array da estrela',starArray)
+    async function handleDelete() {
+        try {
+            await api.delete(`/movie/${id}`);
+            alert("Filme removido com sucesso!")
+            history.push('/')
+        } catch (error) {
+            if(error.request.status === 404) {
+                alert("Filme não encontrado")
+            }
+        }
+    }
+
     return (
         <>
             <Header/>
@@ -56,7 +67,7 @@ function SynopsisPage() {
                     <Link to="/update-movie" className="mx-2 p-2 bg-orangeUpdate rounded-full">
                         <svg className="w-6 h-6" fill="none"  stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                     </Link>
-                    <Link className="mx-2 p-2 fill-redDelete bg-redDelete rounded-full">
+                    <Link onClick={handleDelete} className="mx-2 p-2 fill-redDelete bg-redDelete rounded-full">
                         <svg className="w-6 h-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                     </Link>
                 </div>
