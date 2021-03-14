@@ -40,7 +40,7 @@ function SynopsisPage() {
 
     return (
         <>
-            <Header/>
+            <Header link={'/create-movie'}/>
             <div className="container w-2/3  mx-auto bg-white rounded-2xl mt-10">
                 <div className="h-14 rounded-t-lg flex items-center justify-start pl-8 font-bold bg-redRails text-titleForm mx-auto text-white text-start m-4">
                     <BiCameraMovie size="2.4rem"/>
@@ -48,7 +48,7 @@ function SynopsisPage() {
                 </div>
             <div className="m-8 flex justify-between items-center">
                 <div>
-                    <h2 className="text-directorName font-bold mb-2">{movies.director}</h2>
+                    <Link to={`/director-movie/${movies.director}`} className="text-directorName font-bold mb-2">{movies.director}</Link>
                     <p className="my-2 text-releaseDate text-releaseDate " >{movies.release_date}</p>
                     
                     <div className="flex items-center mb-2">
