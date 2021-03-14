@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import {useHistory} from 'react-router-dom'
 
 import Input from './components/Input';
@@ -7,28 +7,26 @@ import ReactStars from 'react-rating-stars-component'
 
 import api from '../../services/api'
 
+const initialValue = {
+    name: '',
+    release_date: '',
+    director: '',
+    synopsis: '',
+    score:   0,
+}
+
 function Forms({buttonText, isCreateMovie, id}){
 
     const history = useHistory()
 
-    const[name, setName] = useState('');
-    const[release_date, setReleaseDate] = useState('');
-    const[director, setDirector] = useState('');
-    const[synopsis, setSynopsis] = useState('');
-    const[score, setScore] = useState(0);
 
- 
+    const[values, setValues] = useState(initialValue)
+
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const data = { 
-            name,
-            release_date,
-            director,
-            synopsis,
-            score
-        } 
-        isCreateMovie ? handleCreate(data) : handleUpdate(data) 
+     
+        isCreateMovie ? handleCreate(values) : handleUpdate(values) 
         
 
         async function handleCreate(data) {
@@ -54,33 +52,47 @@ function Forms({buttonText, isCreateMovie, id}){
                     alert("Algo está errado no formulário , revise as infromações novamente...")
                 }
             }  
-        }
-
-
+        }   
     }
-    return(
+
+    useEffect(() => {
+        api.get(`movie/${id}`).then((response) => {
+            setValues(response.data.data)
+        })
+    }, [])
+
+    function onChange(event) {
+
+        console.log(values)
+
+        setValues({...values, [event.target.name]: event.target.value})
+    }
+    return( 
         <form onSubmit={handleSubmit} className="my-auto mx-16">
             <Input
             type="text"
             name="name"
+            value={values.name}
             placeholder="Nome do filme"
             required="true"
-            onChange={event => setName(event.target.value)}
+            onChange={onChange}
             />
             <Input
             type="text"
             name="director"
+            value={values.director}
             placeholder="Nome do diretor"
             required="true"
-            onChange={event => setDirector(event.target.value)}
+            onChange={onChange}
             />
 
             <Input
             type="textarea"
             name="synopsis"
+            value={values.synopsis}
             placeholder="Sinopse do filme"
             required="true"
-            onChange={event => setSynopsis(event.target.value)}
+            onChange={onChange}
             />
             
             <div className="flex items-center justify-between">
@@ -89,16 +101,17 @@ function Forms({buttonText, isCreateMovie, id}){
                 name="release_date"
                 placeholder="29/29/1992"
                 required="true"
-                onChange={event => setReleaseDate(event.target.value)}
-
+                onChange={onChange}
+                value={values.release_date}
                 />
                 <ReactStars
                 count={5}
+                name="score"
                 size={50}
-                value={5}
+                value={values.score}
                 activeColor="#ffd700"
                 classNames="mb-8 "
-                onChange={event => setScore(event)}
+                
             />,
             </div>
 
