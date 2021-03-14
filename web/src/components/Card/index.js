@@ -4,10 +4,11 @@ import { MdDateRange } from 'react-icons/md'
 import { AiOutlineUser } from 'react-icons/ai'
 import { AiFillStar } from 'react-icons/ai'
 import ItemCard from './components/ItemCard'
+import { Link } from 'react-router-dom'
 
-function Card({name, release_date, director, score}){
+function Card({name, release_date, director, score, link}){
     return (
-        <div className="w-2/3 ">
+        <Link to={link} className="w-2/3 ">
             <div className="h-44 w-64 bg-redRails rounded-xl ">
                 <div className="flex p-4  ">
                     <div className="h-36 w-2 bg-white rounded-xl "></div>
@@ -19,7 +20,7 @@ function Card({name, release_date, director, score}){
                     </div>
                 </div>
             </div>
-          </div>
+          </Link>
     )
 
 }

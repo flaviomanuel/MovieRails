@@ -59,6 +59,7 @@ function HomePage() {
                         release_date={movie.release_date}
                         director={movie.director}
                         score={movie.score}
+                        link="/synopsis-movie"
                     />
                     )
                 })}
