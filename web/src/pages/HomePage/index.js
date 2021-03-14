@@ -14,12 +14,10 @@ function HomePage() {
     async function handleSubmit(event) {
         event.preventDefault();
         try {
-            const response = await api.get(`/movie/findbyname/${name}`)
+            const response = await api.get(`/movie/nameordirector/${name}`)
             setMovies(response.data.data)
         } catch(error) {
-            console.log("erro erronio: ",error.response.status)
-
-            if(error.request.status == 404) {
+            if(error.request.status === 404) {
                 alert("Filme não encontrado")
             }
         }

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace 'v1' do 
       resources :movie
      
-      get 'movie/findbyname/:title', controller: 'movie', action: 'findByName'
-      get 'movie/findbydirector/:director', controller: 'movie', action: 'findByDirector'
+      get 'movie/nameordirector/:title', controller: 'movie', action: 'findByNameOrDirector'
+      get 'movie/director/:director', controller: 'movie', action: 'findByDirector'
       # post 'movies/', controller: 'movie', action: 'create'
       
       
