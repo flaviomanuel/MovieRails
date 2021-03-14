@@ -9,7 +9,8 @@ function CreatePage(){
         <LeftArticle title="Cadastre um filme"/>
         <RightArticle 
         title="Cadastre informações sobre o filme"
-        buttonText="Cadastrar Filme"/>
+        buttonText="Cadastrar Filme"
+        isCreateMovie={true}/>
          </main>
     )
 }

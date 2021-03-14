@@ -4,9 +4,9 @@ function Button({ text, link, isSubmitButton }) {
     return (
         <>
         { isSubmitButton ? ( 
-            <Link to={link} className="text-white h-12 bg-redRails rounded-lg text-lg font-bold flex items-center justify-center">
+            <button to={link} type="submit"className="w-full text-white h-12 bg-redRails rounded-lg text-lg font-bold flex items-center justify-center">
             <p className="my-1 mx-6 text-white">{text}</p>
-            </Link> 
+            </button> 
              
         ) : ( 
        
