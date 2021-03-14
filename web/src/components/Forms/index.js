@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState,useEffect }from 'react';
 import {useHistory} from 'react-router-dom'
 
 import Input from './components/Input';
@@ -7,7 +7,7 @@ import ReactStars from 'react-rating-stars-component'
 
 import api from '../../services/api'
 
-function Forms({buttonText, isCreateMovie}){
+function Forms({buttonText, isCreateMovie, id}){
 
     const history = useHistory()
 
@@ -17,7 +17,7 @@ function Forms({buttonText, isCreateMovie}){
     const[synopsis, setSynopsis] = useState('');
     const[score, setScore] = useState(0);
 
-
+ 
     async function handleSubmit(event) {
         event.preventDefault()
 
@@ -28,18 +28,35 @@ function Forms({buttonText, isCreateMovie}){
             synopsis,
             score
         } 
-
-        try {
-            await api.post('movie',data)
-            alert('Filme cadastrado com sucesso!')
-            history.push('/')
-
-        } catch(error) {
-            if(error.request.status === 400) {
-                alert("Algo está errado no formulário , revise as infromações novamente...")
-            }
-        }
+        isCreateMovie ? handleCreate(data) : handleUpdate(data) 
         
+
+        async function handleCreate(data) {
+            try {
+                await api.post('movie',data)
+                alert('Filme cadastrado com sucesso!')
+                history.push('/')
+    
+            } catch(error) {
+                if(error.request.status === 400) {
+                    alert("Algo está errado no formulário , revise as infromações novamente...")
+                }
+            }  
+        }
+
+        async function handleUpdate(data) {
+            try {
+                await api.put(`movie/${id}`,data)
+                alert('Filme atualizado com sucesso!')
+                history.push('/')
+            } catch(error) {
+                if(error.request.status === 400) {
+                    alert("Algo está errado no formulário , revise as infromações novamente...")
+                }
+            }  
+        }
+
+
     }
     return(
         <form onSubmit={handleSubmit} className="my-auto mx-16">

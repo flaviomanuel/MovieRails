@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Input({type, name, placeholder, required,onChange }) {
+function Input({type, name, placeholder, required,onChange, value }) {
 
     const isTypeTextare = type === 'textarea';
     const isTypeText = type === 'text';
@@ -10,6 +10,7 @@ function Input({type, name, placeholder, required,onChange }) {
             <textarea 
             type={type}
             name={name}
+            value={value}
             placeholder={placeholder}
             required={required}
             className="w-full rounded-md bg-grayBackground mb-8 resize-none h-36"
@@ -21,6 +22,7 @@ function Input({type, name, placeholder, required,onChange }) {
             <input 
             type={type}
             name={name}
+            value={value}
             placeholder={placeholder}
             required={required}
             onChange={onChange}
