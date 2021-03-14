@@ -11,7 +11,6 @@ function SynopsisPage() {
     const {id} = useParams()
     
     const [movies, setMovies] = useState([])
-    const [newScore, setNewScore] = useState(2)
 
     const starArray = []
 
@@ -21,13 +20,7 @@ function SynopsisPage() {
         })
     },[id])
 
-    useEffect(() => {
-        setNewScore(movies.score)
-        console.log('pontos: ',movies.score)
-        console.log('NEW pontos: ',newScore)
-    })
 
-   
         let i =0; 
         for (i = 0; i < movies.score; i++) {
             starArray.push(i+1)
@@ -48,11 +41,13 @@ function SynopsisPage() {
                     <p className="my-2 text-releaseDate text-releaseDate " >{movies.release_date}</p>
                     
                     <div className="flex items-center mb-2">
-                    {starArray.map((star,index) => {
-                       return(
-                        <AiFillStar size="1.8rem" value={star} color="#FFC107"/>
-                       ) 
-                    })} 
+                    {movies.score === 0 ? (
+                        <AiFillStar size="1.8rem"  color="#5F6368"/>
+
+                     ) : starArray.map((value,index) => (
+                         <AiFillStar size="1.8rem" value={value} color="#FFC107"/>
+                        ))}
+                    
                     <p className="text-modifyLg ml-2">({movies.score}/5)</p>
                     </div>
 
