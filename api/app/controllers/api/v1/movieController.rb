@@ -41,6 +41,17 @@ module Api
                 end
             end
 
+            def destroy
+            begin
+                movie = Movie.find(params[:id])
+                movie.destroy
+                render json: {status: 'SUCCESS', message:'deleted movie', data:movie},status: :ok
+             rescue ActiveRecord::RecordNotFound => e
+                render json: {status: 'ERROR', message:'not deleted movie', data:e},status: :not_found
+            
+            end
+            end
+
             def findByNameOrDirector
                 paramsSerialized = params[:title].gsub('+', ' ')
                 movies = Movie.all.where("name ILIKE ? OR director ILIKE ? ", "%#{paramsSerialized}%",  "%#{paramsSerialized}%")
