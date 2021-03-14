@@ -17,14 +17,14 @@ function HomePage() {
 
     useEffect( () => {
         async function fetchData(){
-          const response = await api.get(`/movie/director/${directorName}`)
-            
+          const response = await api.get(`/movie/director/${directorName}`) 
                 setMovies(response.data.data)
                 setDirector(response.data.data[0])
-                
+  
         }
          fetchData()
-        },[])
+ 
+        },[directorName])
     return (
         <>
             <Header link="/create-movie"/>
