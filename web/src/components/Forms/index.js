@@ -21,12 +21,20 @@ function Forms({buttonText, isCreateMovie, id}){
 
 
     const[values, setValues] = useState(initialValue)
+    const[newScore, setNewScore] = useState(0)
 
     async function handleSubmit(event) {
         event.preventDefault()
 
+        const data =  {
+            name: values.name,
+            director: values.director,
+            release_date: values.release_date,
+            synopsis: values.synopsis,
+            score: newScore
+        }
      
-        isCreateMovie ? handleCreate(values) : handleUpdate(values) 
+        isCreateMovie ? handleCreate(data) : handleUpdate(data) 
         
 
         async function handleCreate(data) {
@@ -56,16 +64,21 @@ function Forms({buttonText, isCreateMovie, id}){
     }
 
     useEffect(() => {
+        if(id) {
         api.get(`movie/${id}`).then((response) => {
             setValues(response.data.data)
-        })
-    }, [])
+        })}
+    }, [id])
 
     function onChange(event) {
 
         console.log(values)
 
         setValues({...values, [event.target.name]: event.target.value})
+    }
+
+    function scoreChanged(score) {
+        setNewScore(score)
     }
     return( 
         <form onSubmit={handleSubmit} className="my-auto mx-16">
@@ -111,13 +124,13 @@ function Forms({buttonText, isCreateMovie, id}){
                 value={values.score}
                 activeColor="#ffd700"
                 classNames="mb-8 "
-                
+                onChange={scoreChanged}
             />,
             </div>
 
         <Button
         text={buttonText}
-        link="#"
+        link="/"
         isSubmitButton={true}
         />
         </form>
