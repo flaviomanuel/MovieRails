@@ -63,7 +63,7 @@ module Api
             end
 
             def findByDirector
-                paramsSerialized = params[:director].gsub('+', ' ')
+                paramsSerialized = params[:director].gsub('%20', ' ')
                 movies = Movie.all.where("director ILIKE ?", "%#{paramsSerialized}%")
                 if movies.empty?
                     render json: {status: 'ERROR', message:'movies not found', data:movies},status: :not_found
